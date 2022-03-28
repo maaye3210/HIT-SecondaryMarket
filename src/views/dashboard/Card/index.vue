@@ -4,7 +4,7 @@
       <el-col :span="6">
         <el-card>
           <!-- 第一个card -->
-          <Detail title="总交易额" count="¥ 4265">
+          <Detail title="总交易额" count="¥ 43265.50">
             <template slot="charts">
               <span>周同比&nbsp;&nbsp;56.67%
                 <svg t="1637478902688" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3315" width="16" height="16">
@@ -37,7 +37,7 @@
                 </svg></span>
             </template>
             <template slot="footer">
-              <span>日销售额￥ 924</span>
+              <span>日销售额￥ 924.00</span>
             </template>
           </Detail>
         </el-card>
@@ -45,7 +45,7 @@
       <el-col :span="6">
         <el-card>
           <!-- 第二个card -->
-          <Detail title="访问量" count="8460">
+          <Detail title="访问量" count="58460">
             <template slot="charts">
               <lineCharts />
             </template>

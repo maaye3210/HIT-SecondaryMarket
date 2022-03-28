@@ -33,21 +33,14 @@ export function logout() {
   })
 }
 
-
-
-
-
-
-
-/* 
+/*
 获取当前用户的菜单权限列表
 */
 export function getMenu() {
   return request('/admin/acl/index/menu')
 }
 
-
-/* 
+/*
 获取后台用户分页列表(带搜索)
 */
 export function getPageList(page, limit, searchObj) {
@@ -58,7 +51,7 @@ export function getPageList(page, limit, searchObj) {
   })
 }
 
-/* 
+/*
 根据ID获取某个后台用户
 */
 export function getById(id) {
@@ -68,7 +61,7 @@ export function getById(id) {
   })
 }
 
-/* 
+/*
 保存一个新的后台用户
 */
 export function add(user) {
@@ -79,7 +72,7 @@ export function add(user) {
   })
 }
 
-/* 
+/*
 更新一个后台用户
 */
 export function update(user) {
@@ -90,7 +83,7 @@ export function update(user) {
   })
 }
 
-/* 
+/*
 获取某个用户的所有角色
 */
 export function getRoles(userId) {
@@ -100,7 +93,7 @@ export function getRoles(userId) {
   })
 }
 
-/* 
+/*
 给某个用户分配角色
 roleId的结构: 字符串, 'rId1,rId2,rId3'
 */
@@ -115,7 +108,7 @@ export function assignRoles(userId, roleId) {
   })
 }
 
-/* 
+/*
 删除某个用户
 */
 export function removeById(id) {
@@ -125,7 +118,7 @@ export function removeById(id) {
   })
 }
 
-/* 
+/*
 批量删除多个用户
 ids的结构: ids是包含n个id的数组
 */

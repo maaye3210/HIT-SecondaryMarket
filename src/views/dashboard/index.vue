@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Card></Card>
-    <Sale></Sale>
-    <Observe></Observe>
+    <Card />
+    <Sale />
+    <Observe />
   </div>
 </template>
 
@@ -12,17 +12,16 @@ import Card from './Card'
 import Observe from './Observe'
 export default {
   name: '',
-  components:{
+  components: {
     Card,
     Sale,
     Observe
   },
-  mounted(){
-    this.$store.dispatch('getData');
+  mounted() {
+    this.$store.dispatch('getData')
   }
 }
 </script>
 
 <style scoped>
-
 </style>

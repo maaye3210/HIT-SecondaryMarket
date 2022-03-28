@@ -2,25 +2,25 @@
   <div>
     <el-row :gutter="10">
       <el-col :span="12">
-          <Search></Search>
+        <Search />
       </el-col>
       <el-col :span="12">
-          <Category></Category>
+        <Category />
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-import Search from "./Search";
-import Category from "./Category";
+import Search from './Search'
+import Category from './Category'
 export default {
-  name: "",
+  name: '',
   components: {
     Search,
-    Category,
-  },
-};
+    Category
+  }
+}
 </script>
 
 <style scoped>

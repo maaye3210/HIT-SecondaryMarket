@@ -11,7 +11,7 @@
           <el-table-column type="index" label="序号" width="80" align="center" />
           <el-table-column prop="attrName" label="属性名称" width="150" />
           <el-table-column prop="prop" label="属性值列表" width="width">
-            <template slot-scope="{ row}">
+            <template slot-scope="{ row }">
               <el-tag v-for="(attrValue) in row.attrValueList" :key="attrValue.id" type="success" style="margin: 0px 20px">{{ attrValue.valueName }}</el-tag>
             </template>
           </el-table-column>

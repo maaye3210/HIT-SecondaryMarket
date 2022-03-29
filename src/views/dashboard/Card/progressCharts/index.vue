@@ -29,29 +29,48 @@ export default {
       // 系列
       series: [
         {
-          // 图标形式-柱状图
+          data: [12],
           type: 'bar',
-          data: [78],
-          color: 'cyan',
-          // 柱状图的宽度
-          barWidth: 10,
-          // eslint-disable-next-line no-dupe-keys
-          color: 'yellowgreen',
-          // 背景颜色设置
-          showBackground: true,
-          // 设置背景颜色
-          backgroundStyle: {
-            color: '#eee'
-          },
-          // 文本标签
-          label: {
-            show: true,
-            // 改变文本内容
-            formatter: '|',
-            // 文本标签位置调试
-            position: 'right'
-          }
+          stack: 'x',
+          color: '#FF6666'
+
+        },
+        {
+          data: [71],
+          type: 'bar',
+          stack: 'x',
+          color: '#99CC66'
+        },
+        {
+          data: [17],
+          type: 'bar',
+          stack: 'x',
+          color: '#FFFF66'
         }
+        // {
+        //   // 图标形式- 柱状图
+        //   type: 'bar',
+        //   data: [78],
+        //   color: 'cyan',
+        //   // 柱状图的宽度
+        //   barWidth: 10,
+        //   // eslint-disable-next-line no-dupe-keys
+        //   color: 'yellowgreen',
+        //   // 背景颜色设置
+        //   showBackground: true,
+        //   // 设置背景颜色
+        //   backgroundStyle: {
+        //     color: '#eee'
+        //   },
+        //   // 文本标签
+        //   label: {
+        //     show: true,
+        //     // 改变文本内容
+        //     formatter: '|',
+        //     // 文本标签位置调试
+        //     position: 'right'
+        //   }
+        // }
       ],
       // 布局调试
       grid: {
@@ -59,6 +78,11 @@ export default {
         top: 0,
         right: 0,
         bottom: 0
+      },
+      tooltip: {
+
+        show: true,
+        trigger: 'item'
       }
     })
   }

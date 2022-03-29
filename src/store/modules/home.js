@@ -11,6 +11,7 @@ const mutations = {
 const actions = {
     // 发请求获取首页的mock数据
     async getData({ commit }) {
+        console.log('获取模拟数据')
         const result = await mockRequest.get('/home/list')
         if (result.code === 20000) {
             commit('GETDATA', result.data)

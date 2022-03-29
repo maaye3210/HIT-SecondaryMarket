@@ -31,6 +31,7 @@ export default {
           itemStyle: {
             opacity: 0
           },
+          smooth: true,
           // 线条的样式
           lineStyle: {
             color: 'purple'

@@ -1,4 +1,5 @@
 <template>
+
   <el-card class="box-card" style="margin: 10px 0px">
     <div slot="header" class="clearfix">
       <!--  @tab-click="handleClick" -->
@@ -9,12 +10,12 @@
       </el-tabs>
       <!-- 头部右侧内容 -->
       <div class="right">
-        <span @click="setDay">今日</span>
-        <span @click="setWeek">本周</span>
-        <span @click="setMonth">本月</span>
-        <span @click="setYear">本年</span>
+        <a href="javascript:void(0)" @click="setDay">今日</a>
+        <a href="javascript:void(0)" @click="setWeek">本周</a>
+        <a href="javascript:void(0)" @click="setMonth">本月</a>
+        <a href="javascript:void(0)" @click="setYear">本年</a>
         <!--    v-model="value1" -->
-        <el-date-picker v-model="date" class="date" type="daterange" range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd" />
+        <el-date-picker v-model="date" class="date" type="daterange" range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd" size="mini" />
       </div>
     </div>
     <div>
@@ -24,43 +25,43 @@
           <div ref="charts" class="charts" />
         </el-col>
         <el-col :span="6" class="right">
-          <h3>门店{{ title }}排名</h3>
+          <h3>商品热度{{ title }}排名</h3>
           <ul>
             <li>
-              <span class="rindex">0</span>
-              <span>肯德基</span>
+              <span class="rindex righttops">1</span>
+              <span>课本</span>
+              <span class="rvalue">123456</span>
+            </li>
+            <!-- <li>
+              <span class="rindex righttops">2</span>
+              <span>代收快递</span>
               <span class="rvalue">123456</span>
             </li>
             <li>
-              <span class="rindex">1</span>
-              <span>肯德基</span>
+              <span class="rindex righttops">3</span>
+              <span>零食</span>
               <span class="rvalue">123456</span>
             </li>
             <li>
-              <span class="rindex">3</span>
-              <span>肯德基</span>
+              <span class="rindex">4</span>
+              <span>会员租赁</span>
               <span class="rvalue">123456</span>
             </li>
             <li>
-              <span>4</span>
-              <span>肯德基</span>
+              <span class="rindex">5</span>
+              <span>自行车</span>
               <span class="rvalue">123456</span>
             </li>
             <li>
-              <span>5</span>
-              <span>肯德基</span>
+              <span class="rindex">6</span>
+              <span>电子配件</span>
               <span class="rvalue">123456</span>
             </li>
             <li>
-              <span>6</span>
-              <span>肯德基</span>
+              <span class="rindex ">7</span>
+              <span>服装</span>
               <span class="rvalue">123456</span>
-            </li>
-            <li>
-              <span>7</span>
-              <span>肯德基</span>
-              <span class="rvalue">123456</span>
-            </li>
+            </li> -->
           </ul>
         </el-col>
       </el-row>
@@ -72,7 +73,7 @@
 // 引入echarts
 import echarts from 'echarts'
 import dayjs from 'dayjs'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 export default {
   name: '',
   data() {
@@ -91,12 +92,12 @@ export default {
     },
     ...mapState({
       listState: (state) => state.home.list
-    })
+    }),
+    ...mapGetters(['supplyAndDemand'])
   },
   // 监听属性
   watch: {
     title() {
-      console.log('修改配置数据')
       // 重新修改图标的配置数据
       // 图标配置数据可以再次修改，如果有新的数值，新的数值，没有新的数值，还是用以前的
       this.mycharts.setOption({
@@ -154,7 +155,7 @@ export default {
             type: 'bar',
             barWidth: '60%',
             data: this.listState.orderFullYear,
-            color: 'yellowgreen'
+            color: '#3399CC'
           }
         ]
       })
@@ -254,7 +255,7 @@ export default {
   width: 250px;
   margin: 0px 20px;
 }
-.right span {
+.right a {
   margin: 0px 10px;
 }
 .charts {
@@ -273,12 +274,15 @@ ul li {
 }
 .rindex {
   float: left;
+  line-height: 20px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  text-align: center;
+}
+.righttops {
   background: black;
   color: white;
-  text-align: center;
 }
 .rvalue {
   float: right;

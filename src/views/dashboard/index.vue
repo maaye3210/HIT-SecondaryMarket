@@ -19,6 +19,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getData')
+    console.log(this.$router)
   }
 }
 </script>

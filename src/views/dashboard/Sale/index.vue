@@ -27,41 +27,13 @@
         <el-col :span="6" class="right">
           <h3>商品热度{{ title }}排名</h3>
           <ul>
-            <li>
-              <span class="rindex righttops">1</span>
-              <span>课本</span>
-              <span class="rvalue">123456</span>
+            <li v-for="demand,index in showNow.name" :key="index">
+              <div v-if="index<7"><span class="rindex" :class="{'righttops':index<3}">{{ index +1 }}</span>
+                <span>{{ demand }}</span>
+                <span class="rvalue">{{ showNow.value[index] }}</span>
+              </div>
             </li>
-            <!-- <li>
-              <span class="rindex righttops">2</span>
-              <span>代收快递</span>
-              <span class="rvalue">123456</span>
-            </li>
-            <li>
-              <span class="rindex righttops">3</span>
-              <span>零食</span>
-              <span class="rvalue">123456</span>
-            </li>
-            <li>
-              <span class="rindex">4</span>
-              <span>会员租赁</span>
-              <span class="rvalue">123456</span>
-            </li>
-            <li>
-              <span class="rindex">5</span>
-              <span>自行车</span>
-              <span class="rvalue">123456</span>
-            </li>
-            <li>
-              <span class="rindex">6</span>
-              <span>电子配件</span>
-              <span class="rvalue">123456</span>
-            </li>
-            <li>
-              <span class="rindex ">7</span>
-              <span>服装</span>
-              <span class="rvalue">123456</span>
-            </li> -->
+
           </ul>
         </el-col>
       </el-row>
@@ -93,11 +65,20 @@ export default {
     ...mapState({
       listState: (state) => state.home.list
     }),
-    ...mapGetters(['supplyAndDemand'])
+    ...mapGetters(['supplyAndDemand']),
+    showNow() {
+      // console.log(this.supplyAndDemand)
+      if (this.supplyAndDemand) {
+        return this.activeName === 'sale' ? this.supplyAndDemand.demand : this.supplyAndDemand.supply
+      } else {
+        return { demand: [], supply: [] }
+      }
+    }
   },
   // 监听属性
   watch: {
     title() {
+      console.log('title')
       // 重新修改图标的配置数据
       // 图标配置数据可以再次修改，如果有新的数值，新的数值，没有新的数值，还是用以前的
       this.mycharts.setOption({
@@ -105,20 +86,21 @@ export default {
           text: this.title
         },
         xAxis: {
-          data: this.title === '销售额' ? this.listState.orderFullYearAxis : this.listState.userFullYearAxis
+          data: this.title === '成交数' ? this.listState.orderFullYearAxis : this.listState.userFullYearAxis
         },
         series: [
           {
             name: 'Direct',
             type: 'bar',
             barWidth: '60%',
-            data: this.title === '销售额' ? this.listState.orderFullYear : this.listState.userFullYear,
-            color: 'yellowgreen'
+            data: this.title === '成交数' ? this.listState.orderFullYear : this.listState.userFullYear,
+            color: '#3399CC'
           }
         ]
       })
     },
     listState() {
+      console.log('listState')
       this.mycharts.setOption({
         title: {
           text: this.title + '趋势'

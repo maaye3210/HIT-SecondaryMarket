@@ -32,20 +32,22 @@ export default {
           data: [12],
           type: 'bar',
           stack: 'x',
-          color: '#FF6666'
-
+          color: '#FF6666',
+          barWidth: '40%'
         },
         {
           data: [71],
           type: 'bar',
           stack: 'x',
-          color: '#99CC66'
+          color: '#99CC66',
+          barWidth: '40%'
         },
         {
           data: [17],
           type: 'bar',
           stack: 'x',
-          color: '#FFFF66'
+          color: '#FFFF66',
+          barWidth: '40%'
         }
         // {
         //   // 图标形式- 柱状图
@@ -72,6 +74,10 @@ export default {
         //   }
         // }
       ],
+      itemStyle: {
+        barBorderRadius: 5,
+        borderWidth: 0.5
+      },
       // 布局调试
       grid: {
         left: 0,
@@ -80,9 +86,7 @@ export default {
         bottom: 0
       },
       tooltip: {
-
-        show: true,
-        trigger: 'item'
+        show: true
       }
     })
   }

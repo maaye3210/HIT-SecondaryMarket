@@ -8,25 +8,6 @@ Vue.use(Router)
 /* 引入最外层骨架的一级路由组件*/
 import Layout from '@/layout'
 
-/**
- * Note: sub-menu only appear when route children.length >= 1
- * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
- *
- * hidden: true                   if set true, item will not show in the sidebar(default is false)
- * alwaysShow: true               if set true, will always show the root menu
- *                                if not set alwaysShow, when item has more than one children route,
- *                                it will becomes nested mode, otherwise not show the root menu
- * redirect: noRedirect           if set noRedirect will no redirect in the breadcrumb
- * name:'router-name'             the name is used by <keep-alive> (must set!!!)
- * meta : {
-    roles: ['admin','editor']    control the page roles (you can set multiple roles)
-    title: 'title'               the name show in sidebar and breadcrumb (recommend set)
-    icon: 'svg-name'/'el-icon-x' the icon show in the sidebar
-    breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
-    activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
-  }
- */
-
 // 路由的配置：为什么不同用户登录我们的项目，菜单（路由）都是一样的？
 // 因为咱们的路由‘死的’，不管你是谁，你能看见的，操作的菜单都是一样的
 // 需要把项目中的路由进行拆分
@@ -34,18 +15,19 @@ import Layout from '@/layout'
 // 常量路由:就是不关用户是什么角色，都可以看见的路由
 // 什么角色（超级管理员，普通员工）：登录、404、首页
 export const constantRoutes = [
+  // 登录路由
   {
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
   },
-
+  // 404路由
   {
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true
   },
-
+  // 首页路由，重定向
   {
     path: '/',
     component: Layout,
@@ -59,9 +41,9 @@ export const constantRoutes = [
   }
 ]
 
-// 异步理由:不同的用户（角色），需要过滤筛选出的路由，称之为异步路由
-// 有的用户可以看见测试管理、有的看不见
+// 异步理由
 export const asyncRoutes = [
+  // 权限管理路由
   {
     name: 'Acl',
     path: '/acl',
@@ -108,6 +90,7 @@ export const asyncRoutes = [
       }
     ]
   },
+  // 商品管理路由
   {
     path: '/product',
     component: Layout,
@@ -140,6 +123,7 @@ export const asyncRoutes = [
       }
     ]
   },
+  // 测试
   {
     path: '/test',
     component: Layout,
@@ -165,12 +149,8 @@ export const asyncRoutes = [
 // 任意路由：当路径出现错误的时候重定向404
 export const anyRoutes = { path: '*', redirect: '/404', hidden: true }
 
-// 任意理由：
-
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
-  // 因为注册的路由是‘死的’，‘活的’路由如果根据不同用户（角色）可以展示不同菜单
   routes: constantRoutes
 })
 

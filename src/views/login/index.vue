@@ -41,8 +41,7 @@ import { validUsername } from '@/utils/validate'
 export default {
   name: 'Login',
   data() {
-    // 先不用在意：这里面在进行表单验证，验证用户名与密码操作
-    // 回首在看这里
+    // 进行表单验证
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
         callback(new Error('Please enter the correct user name'))

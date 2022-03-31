@@ -1,44 +1,57 @@
 <template>
+  <el-row :gutter="10">
+    <el-col :span="16">
+      <el-card class="box-card" style="margin: 10px 0px">
+        <div slot="header" class="clearfix">
+          <!--  @tab-click="handleClick" -->
+          <!-- 头部左侧内容 -->
+          <el-tabs v-model="activeName" class="tab">
+            <el-tab-pane label="成交数" name="sale" />
+            <el-tab-pane label="访问量" name="visite" />
+          </el-tabs>
+          <!-- 头部右侧内容 -->
+          <div class="right">
+            <a href="javascript:void(0)" @click="setDay">今日</a>
+            <a href="javascript:void(0)" @click="setWeek">本周</a>
+            <a href="javascript:void(0)" @click="setMonth">本月</a>
+            <a href="javascript:void(0)" @click="setYear">本年</a>
+            <!--    v-model="value1" -->
+            <el-date-picker v-model="date" class="date" type="daterange" range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd" size="mini" />
+          </div>
+        </div>
+        <div>
+          <el-row :gutter="10">
+            <el-col :span="18">
+              <!-- 容器 -->
+              <div ref="charts" class="charts" />
+            </el-col>
+            <el-col :span="6" class="right">
+              <h3>商品热度{{ title }}排名</h3>
+              <ul>
+                <li v-for="demand,index in showNow.name" :key="index">
+                  <div v-if="index<7"><span class="rindex" :class="{'righttops':index<3}">{{ index +1 }}</span>
+                    <span>{{ demand }}</span>
+                    <span class="rvalue">{{ showNow.value[index] }}</span>
+                  </div>
+                </li>
 
-  <el-card class="box-card" style="margin: 10px 0px">
-    <div slot="header" class="clearfix">
-      <!--  @tab-click="handleClick" -->
-      <!-- 头部左侧内容 -->
-      <el-tabs v-model="activeName" class="tab">
-        <el-tab-pane label="成交数" name="sale" />
-        <el-tab-pane label="访问量" name="visite" />
-      </el-tabs>
-      <!-- 头部右侧内容 -->
-      <div class="right">
-        <a href="javascript:void(0)" @click="setDay">今日</a>
-        <a href="javascript:void(0)" @click="setWeek">本周</a>
-        <a href="javascript:void(0)" @click="setMonth">本月</a>
-        <a href="javascript:void(0)" @click="setYear">本年</a>
-        <!--    v-model="value1" -->
-        <el-date-picker v-model="date" class="date" type="daterange" range-separator="-" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd" size="mini" />
-      </div>
-    </div>
-    <div>
-      <el-row :gutter="10">
-        <el-col :span="18">
-          <!-- 容器 -->
-          <div ref="charts" class="charts" />
-        </el-col>
-        <el-col :span="6" class="right">
-          <h3>商品热度{{ title }}排名</h3>
-          <ul>
-            <li v-for="demand,index in showNow.name" :key="index">
-              <div v-if="index<7"><span class="rindex" :class="{'righttops':index<3}">{{ index +1 }}</span>
-                <span>{{ demand }}</span>
-                <span class="rvalue">{{ showNow.value[index] }}</span>
-              </div>
-            </li>
+              </ul>
+            </el-col>
+          </el-row>
+        </div>
+      </el-card>
+    </el-col>
+    <el-col :span="8">
+      <el-card style="margin: 10px 0px">
+        <div slot="header">
+          <lineCharts />
+        </div>
+        <div />
+      </el-card>
+    </el-col>
 
-          </ul>
-        </el-col>
-      </el-row>
-    </div>
-  </el-card>
+  </el-row>
+
 </template>
 
 <script>
@@ -46,8 +59,12 @@
 import echarts from 'echarts'
 import dayjs from 'dayjs'
 import { mapState, mapGetters } from 'vuex'
+import lineCharts from './lineCharts'
 export default {
   name: '',
+  components: {
+    lineCharts
+  },
   data() {
     return {
       activeName: 'sale',
@@ -100,7 +117,6 @@ export default {
       })
     },
     listState() {
-      console.log('listState')
       this.mycharts.setOption({
         title: {
           text: this.title + '趋势'

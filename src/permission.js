@@ -20,7 +20,7 @@ router.beforeEach(async (to, from, next) => {
   // determine whether the user has logged in
   const hasToken = getToken()
 
-  console.log('**********permission被调用*********')
+  console.log('**********permission被调用beforeEach*********')
 
   if (hasToken) {
     if (to.path === '/login') {
@@ -30,11 +30,13 @@ router.beforeEach(async (to, from, next) => {
     } else {
       const hasGetUserInfo = store.getters.name
       if (hasGetUserInfo) {
+        console.log('有hasGetUserInfo：', hasGetUserInfo) // 刷新时hasGetUserInfo为“”
         next()
       } else {
+        console.log('没有hasGetUserInfo')
         try {
           // get user info
-          await store.dispatch('user/getInfo')
+          store.dispatch('user/getInfo')
 
           next()
         } catch (error) {
@@ -48,7 +50,7 @@ router.beforeEach(async (to, from, next) => {
     }
   } else {
     /* has no token*/
-
+    console.log('')
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly
       next()
@@ -58,8 +60,8 @@ router.beforeEach(async (to, from, next) => {
       NProgress.done()
     }
   }
+  console.log('**********permission调用后beforeEach*********')
 })
-
 router.afterEach(() => {
   // finish progress bar
   NProgress.done()

@@ -1,8 +1,8 @@
 <template>
   <div>
     <Card />
-    <Sale />
     <Observe />
+    <Sale />
   </div>
 </template>
 

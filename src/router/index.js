@@ -158,11 +158,10 @@ export function resetRouter() {
 }
 
 router.beforeEach(async (to, from, next) => {
-  console.log('路由守卫被触发')
-  console.log('---------------')
+  console.log('--------路由守卫被触发-------')
   console.log('to: ', to)
   console.log('from: ', from)
-  console.log('---------------')
+  console.log('--------路由守卫被触发-------')
   next()
 })
 

@@ -22,6 +22,9 @@ const getters = {
       })
     }
     return sum
-  }
+  },
+  demandRank: state => state.home.list.demandRank,
+  supplyRank: state => state.home.list.supplyRank,
+  searchWord: state => state.home.list.searchWord
 }
 export default getters

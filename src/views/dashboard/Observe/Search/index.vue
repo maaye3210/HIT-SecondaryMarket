@@ -56,8 +56,7 @@ export default {
 
 <style scoped>
 .header {
-  border-bottom: 1px solid #eee;
-  padding: 5px 0px;
+  /* padding: 5px 0px; */
 }
 .search-header {
   display: flex;

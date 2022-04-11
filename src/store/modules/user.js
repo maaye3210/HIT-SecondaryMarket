@@ -59,6 +59,7 @@ const mutations = {
     state.resultAsyncRoutes = asyncRoutes
     // 计算出当前用户需要展示所有路由
     state.resultAllRputes = constantRoutes.concat(state.resultAsyncRoutes, anyRoutes)
+    // debugger
     // 给路由器添加新的路由
     router.addRoutes(state.resultAllRputes)
     console.log('VueX中增加路由', router)
@@ -111,7 +112,9 @@ const actions = {
         // vuex存储用户全部的信息
         commit('SET_USERINFO', data)
         // 根据服务器返回的数据，计算出用户的可用路由
-        commit('SET_RESULTASYNCROUTES', computedAsyncRoutes(cloneDeep(asyncRoutes), data.routes))
+        console.log(history)
+        const newroute = computedAsyncRoutes(cloneDeep(asyncRoutes), data.routes)
+        commit('SET_RESULTASYNCROUTES', newroute)
         resolve(data)
       }).catch(error => {
         reject(error)

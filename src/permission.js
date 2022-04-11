@@ -11,6 +11,8 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 const whiteList = ['/login'] // no redirect whitelist
 
 router.beforeEach(async (to, from, next) => {
+  console.log('**********permission被调用beforeEach*********')
+  console.log('to', to, 'from', from)
   // start progress bar
   NProgress.start()
 
@@ -19,8 +21,6 @@ router.beforeEach(async (to, from, next) => {
 
   // determine whether the user has logged in
   const hasToken = getToken()
-
-  console.log('**********permission被调用beforeEach*********')
 
   if (hasToken) {
     if (to.path === '/login') {
@@ -37,7 +37,9 @@ router.beforeEach(async (to, from, next) => {
         try {
           // get user info
           store.dispatch('user/getInfo')
-
+          console.log('路由放行了', to)
+          // next.name = 'Role'
+          // next(to.path)
           next()
         } catch (error) {
           // remove token and go to login page to re-login

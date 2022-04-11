@@ -157,12 +157,4 @@ export function resetRouter() {
   router.matcher = newRouter.matcher // reset router
 }
 
-router.beforeEach(async (to, from, next) => {
-  console.log('--------路由守卫被触发-------')
-  console.log('to: ', to)
-  console.log('from: ', from)
-  console.log('--------路由守卫被触发-------')
-  next()
-})
-
 export default router

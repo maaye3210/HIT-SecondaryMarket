@@ -34,7 +34,6 @@
 <script>
 import echarts from 'echarts'
 import { mapGetters } from 'vuex'
-import { options } from 'runjs'
 export default {
   name: '',
   data() {
